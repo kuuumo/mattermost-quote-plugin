@@ -5,12 +5,15 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -20,27 +23,27 @@ jobs:
           cache: "npm"
           cache-dependency-path: "./webapp/package-lock.json"
 
-      - name: Build
+      - name: Build plugin
         run: |
           make all
 
-      - name: リリースの作成
+      - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: dist/*.tar.gz
           name: ${{ github.ref_name }}
           body: |
-            ## 変更内容
+            ## Changes
 
-            このリリースには以下の変更が含まれています：
-            - プラグインバージョン: ${{ github.ref_name }}
+            This release includes:
+            - Plugin version: ${{ github.ref_name }}
 
-            ## インストール方法
+            ## Installation
 
-            1. 添付の `mattermost-quote-plugin-*.tar.gz` をダウンロード
-            2. Mattermostのシステムコンソールから **プラグイン管理 > プラグインのアップロード** を選択
-            3. ダウンロードしたプラグインファイルをアップロード
-            4. プラグインを有効化
+            1. Download the attached `mattermost-quote-plugin-*.tar.gz`
+            2. Go to Mattermost System Console > **Plugin Management > Upload Plugin**
+            3. Upload the plugin file
+            4. Enable the plugin
           draft: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
