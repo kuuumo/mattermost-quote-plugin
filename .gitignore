@@ -1,0 +1,23 @@
+# ビルド成果物
+dist/
+webapp/dist/
+
+# 依存関係
+node_modules/
+webapp/node_modules/
+
+# IDE/エディタ
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS関連
+.DS_Store
+Thumbs.db
+
+# ログ
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
