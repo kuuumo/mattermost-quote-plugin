@@ -1,0 +1,46 @@
+name: リリースビルド
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+          cache-dependency-path: "./webapp/package-lock.json"
+
+      - name: Build
+        run: |
+          make all
+
+      - name: リリースの作成
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*.tar.gz
+          name: ${{ github.ref_name }}
+          body: |
+            ## 変更内容
+
+            このリリースには以下の変更が含まれています：
+            - プラグインバージョン: ${{ github.ref_name }}
+
+            ## インストール方法
+
+            1. 添付の `mattermost-quote-plugin-*.tar.gz` をダウンロード
+            2. Mattermostのシステムコンソールから **プラグイン管理 > プラグインのアップロード** を選択
+            3. ダウンロードしたプラグインファイルをアップロード
+            4. プラグインを有効化
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
