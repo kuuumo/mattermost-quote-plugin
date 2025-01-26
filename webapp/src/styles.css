@@ -1,0 +1,11 @@
+blockquote {
+    border-left: 4px solid var(--sidebar-text-60) !important;
+    margin: 4px 0 !important;
+    padding: 4px 12px !important;
+    color: var(--center-channel-color) !important;
+    background-color: var(--center-channel-color-04) !important;
+}
+
+blockquote::before {
+    display: none;
+}

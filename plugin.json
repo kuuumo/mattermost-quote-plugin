@@ -1,0 +1,15 @@
+{
+    "id": "com.mattermost.quote-plugin",
+    "name": "Quote Plugin",
+    "description": "A plugin that provides Slack-like quote formatting for Mattermost",
+    "version": "1.0.0",
+    "min_server_version": "5.37.0",
+    "webapp": {
+        "bundle_path": "webapp/main.js"
+    },
+    "settings_schema": {
+        "header": "Quote Plugin Settings",
+        "footer": "",
+        "settings": []
+    }
+}
