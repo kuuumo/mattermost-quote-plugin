@@ -1,92 +1,92 @@
-# Mattermost 引用スタイルプラグイン
+# Mattermost Quote Plugin
 
-Mattermostで Slack ライクな引用スタイルを実現するプラグインです。
+A Mattermost plugin that provides Slack-like quote formatting.
 
-## 機能
+## Features
 
-- `>` で始まる行を自動的にSlackライクな引用スタイルで表示
-- Mattermostのテーマカラーに合わせた配色
-- シンプルで使いやすいインターフェース
+- Automatically formats lines starting with `>` in Slack-like quote style
+- Theme-aware styling that matches your Mattermost theme
+- Simple and intuitive interface
 
-## インストール方法
+## Installation
 
-1. [リリースページ](https://github.com/kuuumo/mattermost-quote-plugin/releases)から最新の `mattermost-quote-plugin-x.x.x.tar.gz` をダウンロード
-2. Mattermostのシステムコンソールから **プラグイン管理 > プラグインのアップロード** を選択
-3. ダウンロードしたプラグインファイルをアップロード
-4. プラグインを有効化
+1. Download the latest `mattermost-quote-plugin-x.x.x.tar.gz` from the [releases page](https://github.com/kuuumo/mattermost-quote-plugin/releases)
+2. Go to Mattermost System Console > **Plugin Management > Upload Plugin**
+3. Upload the downloaded plugin file
+4. Enable the plugin
 
-## 開発者向け情報
+## Development
 
-### 必要な環境
+### Prerequisites
 
-- Node.js v16以上
-- npm v7以上
+- Node.js v16 or higher
+- npm v7 or higher
 - make
 
-### ビルド方法
+### Build Instructions
 
 ```bash
-# 全ビルド（クリーン + ビルド + パッケージング）
+# Full build (clean + build + package)
 make all
 
-# 個別のビルドステップ
-make clean   # ビルド成果物の削除
-make webapp  # webappのビルドのみ
-make dist    # パッケージングのみ
+# Individual build steps
+make clean   # Clean build artifacts
+make webapp  # Build webapp only
+make dist    # Package only
 ```
 
-### プロジェクト構造
+### Project Structure
 
 ```
 .
-├── webapp/              # フロントエンド実装
+├── webapp/              # Frontend implementation
 │   ├── src/
-│   │   ├── index.js    # プラグインのメインロジック
-│   │   └── styles.css  # スタイル定義
-│   └── package.json    # 依存関係の定義
-├── plugin.json         # プラグイン設定
-└── Makefile           # ビルドスクリプト
+│   │   ├── index.js    # Plugin main logic
+│   │   └── styles.css  # Style definitions
+│   └── package.json    # Dependencies
+├── plugin.json         # Plugin configuration
+└── Makefile           # Build scripts
 ```
 
-### リリース方法
+### Release Process
 
-リリースは GitHub Actions を使用して自動化されています。以下の手順で新しいリリースを作成できます：
+The release process is automated using GitHub Actions. Follow these steps to create a new release:
 
-1. リリース用のタグを作成
+1. Create a release tag
 ```bash
-git tag v1.0.0  # バージョン番号は適宜変更
+git tag v1.0.0  # Replace with appropriate version
 git push origin v1.0.0
 ```
 
-2. GitHub Actions の実行
-- タグをプッシュすると、自動的に以下が実行されます：
-  1. プラグインのビルド
-  2. ドラフトリリースの作成
-  3. ビルド成果物のアップロード
+2. GitHub Actions Execution
+- Upon pushing a tag, the following steps are automatically executed:
+  1. Plugin build
+  2. Draft release creation
+  3. Build artifact upload
 
-3. リリースの確認と公開
-- GitHub上で以下を実行：
-  1. **Releases** ページを開く
-  2. 作成されたドラフトリリースを確認
-  3. 必要に応じて説明文を編集
-  4. **Publish release** をクリック
+3. Release Review and Publishing
+- On GitHub:
+  1. Open the **Releases** page
+  2. Review the created draft release
+  3. Edit the description if needed
+  4. Click **Publish release**
 
-### トラブルシューティング
+### Troubleshooting
 
-#### ビルドエラー
+#### Build Issues
 
-1. `webapp/dist` ディレクトリが見つからない
+1. `webapp/dist` directory not found
 ```bash
-make clean  # ビルド成果物をクリーンアップ
-make all    # 全てのビルドを再実行
+make clean  # Clean build artifacts
+make all    # Rebuild everything
 ```
 
-2. 依存関係のエラー
+2. Dependency errors
 ```bash
-rm -rf webapp/node_modules  # node_modulesを削除
-make all                    # 依存関係の再インストールとビルドを実行
+rm -rf webapp/node_modules  # Remove node_modules
+make all                    # Reinstall dependencies and rebuild
 ```
 
-## ライセンス
+## License
 
 MIT License

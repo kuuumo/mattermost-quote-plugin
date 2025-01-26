@@ -1,9 +1,9 @@
 import './styles.css';
 
 const QuotePlugin = {
-    // プラグインの初期化
+    // Plugin initialization
     initialize: () => {
-        // CSSのみを適用するため、特別な初期化は不要
+        // No special initialization needed as we only apply CSS
     }
 };
 
